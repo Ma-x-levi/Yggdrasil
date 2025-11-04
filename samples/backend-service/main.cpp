@@ -40,7 +40,7 @@ volatile std::sig_atomic_t g_shutdownSignal = 0;
 //     std::mutex _streamMutex;
 // };
 
-class DemoOneShotTask final : public yggdrasil::platform::YggdrasilThreadBase {
+class DemoOneShotTask final : public YggdrasilThreadBase {
 public:
     DemoOneShotTask(std::string message, std::chrono::milliseconds delay)
         : _message(std::move(message))
@@ -57,7 +57,7 @@ public:
         }
 
         if (!_cancelled.load(std::memory_order_acquire)) {
-            auto logger = yggdrasil::platform::Yggdrasil::instance().logger();
+            auto logger = Yggdrasil::instance().logger();
             const std::string text = "[BackendService Demo] One-shot task: " + _message;
             if (logger) {
                 logger->info(text, "BackendDemo");
@@ -85,7 +85,7 @@ private:
     std::atomic<bool> _cancelled;
 };
 
-class DemoLoopTask final : public yggdrasil::platform::YggdrasilThreadBase {
+class DemoLoopTask final : public YggdrasilThreadBase {
 public:
     DemoLoopTask()
         : _cancelled(false)
@@ -97,7 +97,7 @@ public:
         }
 
         const auto iteration = _iteration.fetch_add(1, std::memory_order_relaxed) + 1;
-        auto logger = yggdrasil::platform::Yggdrasil::instance().logger();
+        auto logger = Yggdrasil::instance().logger();
         std::ostringstream msg;
         msg << "[BackendService Demo] Loop iteration " << iteration;
         if (logger) {
@@ -132,8 +132,8 @@ void handleSignal(int signal) {
 }
 } // namespace
 
-int main() {
-    using namespace yggdrasil::platform;
+int main(int argc, char *argv[]) 
+{
 
     std::signal(SIGINT, handleSignal);
     std::signal(SIGTERM, handleSignal);

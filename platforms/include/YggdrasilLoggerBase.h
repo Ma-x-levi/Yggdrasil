@@ -16,7 +16,7 @@
 #include <utility>
 #include <vector>
 
-namespace yggdrasil::platform {
+
 
 /**
  * @brief Base interface for framework logging.
@@ -243,4 +243,4 @@ private:
     std::vector<LogSink> _sinks;
 };
 
-} // namespace yggdrasil::platform
+

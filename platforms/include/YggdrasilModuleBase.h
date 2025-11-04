@@ -5,7 +5,7 @@
 #include <memory>
 #include <string_view>
 
-namespace yggdrasil::platform {
+
 
 /**
  * @brief Base interface for any unit of work that can be scheduled on the Yggdrasil thread pool.
@@ -97,4 +97,4 @@ public:
     }
 };
 
-} // namespace yggdrasil::platform
+

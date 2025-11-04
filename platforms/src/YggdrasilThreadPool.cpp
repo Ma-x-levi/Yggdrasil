@@ -6,7 +6,7 @@
 #include <functional>
 #include <utility>
 
-namespace yggdrasil::platform {
+
 
 YggdrasilThreadPool::YggdrasilThreadPool()
     : _nextId(1)
@@ -438,9 +438,6 @@ int runThreadPoolEntry(int argc, char* argv[]) {
 
 } // namespace
 
-int main(int argc, char* argv[]) {
-    auto entry = std::function<int(int, char**)>(runThreadPoolEntry);
-    return entry(argc, argv);
-}
 
-} // namespace yggdrasil::platform
+
+

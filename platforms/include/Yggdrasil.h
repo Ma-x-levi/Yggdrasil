@@ -15,7 +15,7 @@
 #include "YggdrasilThreadPool.h"
 #include "YggdrasilLoggerBase.h"
 
-namespace yggdrasil::platform {
+
 
 enum class YggdrasilState : std::uint8_t 
 {
@@ -40,8 +40,6 @@ struct YggdrasilStatus {
     YggdrasilState state{YggdrasilState::Uninitialized};
     bool initialized{false};
     bool running{false};
-    std::string name;
-    std::string message;
     std::chrono::steady_clock::time_point timestamp{};
     std::chrono::steady_clock::time_point startTime{};
     std::size_t tasksSubmitted{0};
@@ -53,8 +51,6 @@ class Yggdrasil final
 public:
 
 private:
-
-    std::string       _name;
 
     std::atomic<bool> _initialized;
     std::atomic<bool> _root_running;
@@ -105,7 +101,6 @@ public:
 private:
     Yggdrasil();
 
-    void notifyStatusChange();
     YggdrasilStatus buildStatusUnsafe() const;
     void emitLog(YggdrasilLoggerBase::Level level, std::string_view message, std::string_view category = {}) const;
 
@@ -115,7 +110,6 @@ private:
     std::atomic<YggdrasilState> _state;
     std::atomic<bool> _running;
     std::chrono::steady_clock::time_point _startTime;
-    std::string _lastMessage;
     std::atomic<std::size_t> _tasksSubmitted;
     std::atomic<std::size_t> _tasksCompleted;
     std::size_t _listenerToken;
@@ -123,4 +117,4 @@ private:
     YggdrasilLoggerBase::Ptr _logger;
 };
 
-} // namespace yggdrasil::platform
+

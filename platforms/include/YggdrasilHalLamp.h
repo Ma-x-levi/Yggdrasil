@@ -5,7 +5,7 @@
 #include <cstdint>
 #include <string_view>
 
-namespace yggdrasil::platform {
+
 
 /**
  * @brief Abstract interface for controlling indicator lamps within the HAL.
@@ -139,4 +139,4 @@ public:
     }
 };
 
-} // namespace yggdrasil::platform
+

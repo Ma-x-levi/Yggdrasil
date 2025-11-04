@@ -16,7 +16,7 @@
 #include <unordered_map>
 #include <vector>
 
-namespace yggdrasil::platform {
+
 
 /**
  * @brief Cooperative thread pool that schedules @ref YggdrasilThreadBase tasks.
@@ -149,4 +149,4 @@ private:
     std::size_t _workerCount;
 };
 
-} // namespace yggdrasil::platform
+
