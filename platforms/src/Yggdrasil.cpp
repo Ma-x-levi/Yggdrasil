@@ -67,6 +67,10 @@ int Yggdrasil::main(int argc, char *argv[])
 
 bool Yggdrasil::start()
 {
+    if(_root_running.load(std::memory_order_acquire)) {
+        return false;
+    }
+
     if(_root_thread.joinable()){
         _root_thread.join();
     }
@@ -79,13 +83,7 @@ bool Yggdrasil::start()
 
 void Yggdrasil::stop() 
 {
-    {
-        std::scoped_lock lock(_mutex);
-        if (!_running.load(std::memory_order_acquire))
-            return;
 
-        _state.store(YggdrasilState::Stopping, std::memory_order_release);
-    }
 
     _root_running.store(false, std::memory_order_release);
     if (_root_thread.joinable()) {
@@ -95,7 +93,6 @@ void Yggdrasil::stop()
             _root_thread.join();
         }
     }
-
     {
         std::scoped_lock lock(_mutex);
         _running.store(false, std::memory_order_release);
@@ -116,19 +113,23 @@ void Yggdrasil::shutdown() {
     }
 }
 
-bool Yggdrasil::isInitialized() const noexcept {
+bool Yggdrasil::isInitialized() const noexcept 
+{
     return _initialized.load(std::memory_order_acquire);
 }
 
-bool Yggdrasil::isRunning() const noexcept {
+bool Yggdrasil::isRunning() const noexcept 
+{
     return _running.load(std::memory_order_acquire);
 }
 
-YggdrasilState Yggdrasil::state() const noexcept {
+YggdrasilState Yggdrasil::state() const noexcept 
+{
     return _state.load(std::memory_order_acquire);
 }
 
-YggdrasilStatus Yggdrasil::status() const {
+YggdrasilStatus Yggdrasil::status() const 
+{
     std::scoped_lock lock(_mutex);
     return buildStatusUnsafe();
 }

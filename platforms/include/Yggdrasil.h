@@ -65,6 +65,7 @@ public:
 
 
 public:
+
     using StatusListener = std::function<void(const YggdrasilStatus&)>;
     using TaskId = YggdrasilThreadPool::TaskId;
     using TaskMetrics = YggdrasilThreadPool::TaskMetrics;
@@ -79,7 +80,11 @@ public:
     void stop();
     void shutdown();
 
-    int main(int argc, char *argv[]);
+    int main(int argc, char* argv[]);
+
+    [[nodiscard]] TaskId RegisterOnetimeTask(YggdrasilThreadPool::TaskInterface func);
+
+    [[nodiscard]] TaskId RegisterLoopTask(YggdrasilThreadPool::TaskInterface func);
 
     [[nodiscard]] TaskId submitTask(YggdrasilThreadBase::Ptr task);
     [[nodiscard]] TaskId startLoopTask(YggdrasilThreadBase::Ptr task);

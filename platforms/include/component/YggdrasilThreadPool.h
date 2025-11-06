@@ -31,6 +31,7 @@
 class YggdrasilThreadPool final {
 public:
     using TaskId = std::size_t;
+    using TaskInterface = std::function<int(int, char* )>;
 
     static constexpr TaskId kInvalidTaskId = 0;
 
