@@ -1,13 +1,18 @@
 #pragma once
 
-class SmartYggdrasil
+/**
+ * @brief xxxxxx
+ *
+ * xxxxxx
+ */
+class HeaderFormatTemplate
 {
 
 //define space
 public:
 
 //define space
-protected:
+protected:  
 
 //define space
 private:
@@ -17,7 +22,7 @@ private:
 public:
 
 //variable space
-protected:
+protected:  
 
 //variable space
 private:
@@ -25,9 +30,11 @@ private:
 
 //method space
 public:
-    SmartYggdrasil();
 
-    ~SmartYggdrasil();
+    
+    HeaderFormatTemplate();
+
+    virtual ~HeaderFormatTemplate() = default;
 
 //method space
 protected:
@@ -46,3 +53,7 @@ protected:
 private:
 
 };
+
+
+
+

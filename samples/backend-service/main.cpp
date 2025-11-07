@@ -3,6 +3,8 @@
 #include <Yggdrasil.h>
 #include <YggdrasilLoggerBase.h>
 
+#include <NanoYggdrasil.h>
+
 #include <atomic>
 #include <chrono>
 #include <csignal>
@@ -23,9 +25,9 @@ int main(int argc, char *argv[])
     // std::signal(SIGINT, handleSignal);
     // std::signal(SIGTERM, handleSignal);
 
-    auto& yggdrasil = Yggdrasil::instance();
+    // auto& yggdrasil = Yggdrasil::instance();
 
-    yggdrasil.initialize();
+    // yggdrasil.initialize();
 
     // auto consoleLogger = std::make_shared<DemoConsoleLogger>();
     // consoleLogger->setLevel(YggdrasilLoggerBase::Level::Debug);
@@ -98,7 +100,9 @@ int main(int argc, char *argv[])
     // service.stop();
     // service.join();
 
-    yggdrasil.start();
+    // yggdrasil.start();
+
+    NanoYggdrasil nanoYggdrasil;
 
     
 
