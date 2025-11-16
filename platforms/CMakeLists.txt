@@ -103,7 +103,10 @@ foreach(dir IN LISTS YGGDRASIL_PLATFORMS_PRIVATE_INCLUDE_DIRS)
     endif()
 endforeach()
 
-target_compile_features(yggdrasil_platforms PUBLIC cxx_std_20)
+# target_compile_features(yggdrasil_platforms PUBLIC cxx_std_11)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 source_group(
     TREE "${YGGDRASIL_PLATFORMS_ROOT}"

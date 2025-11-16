@@ -1,7 +1,7 @@
 #include "BackendService.h"
 
-#include <Yggdrasil.h>
-#include <YggdrasilLoggerBase.h>
+// #include <Yggdrasil.h>
+// #include <YggdrasilLoggerBase.h>
 
 #include <NanoYggdrasil.h>
 
@@ -103,10 +103,12 @@ int main(int argc, char *argv[])
     // yggdrasil.start();
 
     NanoYggdrasil nanoYggdrasil;
+    nanoYggdrasil.test();
 
     
 
     while(1){
+        nanoYggdrasil.test();
         std::this_thread::sleep_for(std::chrono::milliseconds(200));
     }
 

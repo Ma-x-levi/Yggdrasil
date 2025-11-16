@@ -8,27 +8,11 @@ set(SAMPLE_ROOT "${CMAKE_CURRENT_LIST_DIR}")
 get_filename_component(YGGDRASIL_ROOT "${SAMPLE_ROOT}/../.." ABSOLUTE)
 set(YGGDRASIL_PLATFORMS_ROOT "${YGGDRASIL_ROOT}/platforms")
 
-add_subdirectory(
-    "${YGGDRASIL_PLATFORMS_ROOT}"
-    "${CMAKE_CURRENT_BINARY_DIR}/yggdrasil_platforms"
-    EXCLUDE_FROM_ALL
-)
+add_subdirectory("${YGGDRASIL_PLATFORMS_ROOT}/src/nano_yggdrasil" ${CMAKE_BINARY_DIR}/nano_yggdrasil_build)
 
 add_executable(
     yggdrasil_backend_service
-    BackendService.cpp
-    BackendService.h
     main.cpp
 )
 
-target_include_directories(
-    yggdrasil_backend_service
-    PRIVATE
-        "${YGGDRASIL_PLATFORMS_ROOT}/include"
-)
-
-target_link_libraries(
-    yggdrasil_backend_service
-    PRIVATE
-        yggdrasil::platforms
-)
+target_link_libraries(yggdrasil_backend_service PRIVATE nano_yggdrasil)

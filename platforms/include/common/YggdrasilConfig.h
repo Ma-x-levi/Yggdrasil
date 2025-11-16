@@ -1,0 +1,5 @@
+#pragma once
+
+#ifndef YGGDRASIL_DEFAULT_NAME_SIZE
+#define YGGDRASIL_DEFAULT_NAME_SIZE 64
+#endif
