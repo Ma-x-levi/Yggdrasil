@@ -4,6 +4,8 @@
 
 #include <component/YggdrasilLoggerHandleBase.h>
 
+#include <vector>
+
 class NanoYggdrasil
 {
 
@@ -26,7 +28,9 @@ protected:
 //variable space
 private:
 
-    YggdrasilLoggerHandleBase::HandlePtr loggerHandle;
+    // YggdrasilLoggerHandleBase::HandlePtr loggerHandle;
+
+    std::vector<std::reference_wrapper<YggdrasilLoggerHandleBase>> loggerHandleList;   //Todo: use no new realize
 
 
 //method space
@@ -41,6 +45,10 @@ public:
 
     // void test(){ printf("hhhhh");}
     void test();
+
+    YggdrasilTypes::ReturnCode RegisterLoggerHandle(std::reference_wrapper<YggdrasilLoggerHandleBase> handle);
+
+    YggdrasilTypes::ReturnCode init();
 //method space
 protected:
 

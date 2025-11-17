@@ -2,7 +2,9 @@
 
 #include <array>
 #include <memory>
+#include <functional>
 #include <string_view>
+
 
 #include <common/YggdrasilConfig.h>
 
