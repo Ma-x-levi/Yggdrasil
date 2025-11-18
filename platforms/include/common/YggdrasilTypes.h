@@ -24,7 +24,8 @@ namespace YggdrasilTypes
     constexpr std::string_view LOGGER_LEVEL_DEBUG_COLOR    = "\033[0;37m";
     constexpr std::string_view LOGGER_LEVEL_DEFAULT_COLOR  = "\033[0m";
 
-    using LOGGER_FORMAT_SIZE = std::integral_constant<int, 128>;
+    using LOGGER_DEFAULT_FORMAT_SIZE    = std::integral_constant<int, 128>;
+    using LOGGER_DEFAULT_PARAMETER_SIZE = std::integral_constant<int, 512>;
 
 } // namespace YggdrasilTypes
 

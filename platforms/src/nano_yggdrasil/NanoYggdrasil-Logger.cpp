@@ -12,8 +12,8 @@ YggdrasilTypes::ReturnCode NanoYggdrasil::RegisterLoggerHandle(std::reference_wr
 
 YggdrasilTypes::ReturnCode NanoYggdrasil::LoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel level, std::string_view string)
 {
-    char output[string.length() + YggdrasilTypes::LOGGER_FORMAT_SIZE::value] = {0};
-    float time = 0.0f;
+    char output[string.length() + YggdrasilTypes::LOGGER_DEFAULT_FORMAT_SIZE::value] = {0};
+    double time = 0.0f;
     switch (level)
     {
         case YggdrasilLoggerHandleBase::LoggerLevel::ERROR:   snprintf(output, sizeof(output), "%s[%.3f]-[Error]-%s%s",   YggdrasilTypes::LOGGER_LEVEL_ERROR_COLOR.data(),   time, string.data(), YggdrasilTypes::LOGGER_LEVEL_DEFAULT_COLOR.data()); break;
@@ -23,8 +23,6 @@ YggdrasilTypes::ReturnCode NanoYggdrasil::LoggerOutput(YggdrasilLoggerHandleBase
         case YggdrasilLoggerHandleBase::LoggerLevel::DEFAULT: snprintf(output, sizeof(output), "%s[%.3f]-[Default]-%s%s", YggdrasilTypes::LOGGER_LEVEL_DEFAULT_COLOR.data(), time, string.data(), YggdrasilTypes::LOGGER_LEVEL_DEFAULT_COLOR.data()); break;
         default:                                              snprintf(output, sizeof(output), "%s[%.3f]-[Default]-%s%s", YggdrasilTypes::LOGGER_LEVEL_DEFAULT_COLOR.data(), time, string.data(), YggdrasilTypes::LOGGER_LEVEL_DEFAULT_COLOR.data()); break;
     }
-
-    printf("%s\n", output);
 
     for(auto& loggerHandle : loggerHandleList){
         loggerHandle.get().LoggerOutput(level, output);
@@ -36,12 +34,10 @@ YggdrasilTypes::ReturnCode NanoYggdrasil::LoggerOutput(YggdrasilLoggerHandleBase
 YggdrasilTypes::ReturnCode NanoYggdrasil::ExtendLoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel level, std::string_view fmt, ...)
 {
     va_list args;
-    char  string[fmt.length()] = {0};
-
-    printf("fmt size: %ld:%ld:%ld\n", fmt.length(), fmt.size(), fmt.max_size());
+    char string[fmt.length() + YggdrasilTypes::LOGGER_DEFAULT_PARAMETER_SIZE::value] = {0};
 
     va_start(args, fmt);
-    auto stringSize = vsnprintf(string, sizeof(string), fmt.data(), args);
+    vsnprintf(string, sizeof(string), fmt.data(), args);
     va_end(args);
 
     LoggerOutput(level, string);
