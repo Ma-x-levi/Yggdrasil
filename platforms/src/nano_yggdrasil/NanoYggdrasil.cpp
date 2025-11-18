@@ -2,6 +2,14 @@
 
 #include "NanoYggdrasil.h"
 
+
+NanoYggdrasil& NanoYggdrasil::instance() 
+{
+    static NanoYggdrasil NanoYggdrasil;
+    return NanoYggdrasil;
+}
+
+
 NanoYggdrasil::NanoYggdrasil()
 {
 //     // printf("NanoYggdrasil created");
@@ -13,11 +21,6 @@ NanoYggdrasil::NanoYggdrasil()
 NanoYggdrasil::~NanoYggdrasil()
 {
 
-}
-
-void NanoYggdrasil::test()
-{
-    printf("nano yggdrasil test\n");
 }
 
 

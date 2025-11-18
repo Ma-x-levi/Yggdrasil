@@ -35,16 +35,12 @@ private:
 
 //method space
 public:
-    // NanoYggdrasil() = default;
-
-    // ~NanoYggdrasil() = default;
 
     NanoYggdrasil();
 
     ~NanoYggdrasil();
 
-    // void test(){ printf("hhhhh");}
-    void test();
+    static NanoYggdrasil& instance();
 
     YggdrasilTypes::ReturnCode RegisterLoggerHandle(std::reference_wrapper<YggdrasilLoggerHandleBase> handle);
 

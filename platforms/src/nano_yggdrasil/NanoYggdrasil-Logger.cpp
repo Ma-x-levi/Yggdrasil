@@ -13,7 +13,7 @@ YggdrasilTypes::ReturnCode NanoYggdrasil::RegisterLoggerHandle(std::reference_wr
 YggdrasilTypes::ReturnCode NanoYggdrasil::LoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel level, std::string_view string)
 {
     char output[string.length() + YggdrasilTypes::LOGGER_DEFAULT_FORMAT_SIZE::value] = {0};
-    double time = 0.0f;
+    float time = 0.0f;
     switch (level)
     {
         case YggdrasilLoggerHandleBase::LoggerLevel::ERROR:   snprintf(output, sizeof(output), "%s[%.3f]-[Error]-%s%s",   YggdrasilTypes::LOGGER_LEVEL_ERROR_COLOR.data(),   time, string.data(), YggdrasilTypes::LOGGER_LEVEL_DEFAULT_COLOR.data()); break;
