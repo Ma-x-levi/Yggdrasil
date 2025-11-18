@@ -108,11 +108,11 @@ int main(int argc, char *argv[])
     
 
     while(1){
-        nanoYggdrasil.LoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel::ERROR, "NanoYggdrasil error");
-        nanoYggdrasil.LoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel::WARN, "NanoYggdrasil warn");
-        nanoYggdrasil.LoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel::INFO, "NanoYggdrasil info");
-        nanoYggdrasil.LoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel::DEBUG, "NanoYggdrasil debug");
-        nanoYggdrasil.LoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel::DEFAULT, "NanoYggdrasil default");
+        nanoYggdrasil.ExtendLoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel::ERROR, "NanoYggdrasil error: %d", 1);
+        nanoYggdrasil.ExtendLoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel::WARN, "NanoYggdrasil warn: %d", 2);
+        nanoYggdrasil.ExtendLoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel::INFO, "NanoYggdrasil info: %d", 3);
+        nanoYggdrasil.ExtendLoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel::DEBUG, "NanoYggdrasil debug: %d", 4);
+        nanoYggdrasil.ExtendLoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel::DEFAULT, "NanoYggdrasil default: %d", 5);
         std::this_thread::sleep_for(std::chrono::milliseconds(200));
     }
 

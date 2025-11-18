@@ -12,7 +12,7 @@ YggdrasilTypes::ReturnCode NanoYggdrasil::RegisterLoggerHandle(std::reference_wr
 
 YggdrasilTypes::ReturnCode NanoYggdrasil::LoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel level, std::string_view string)
 {
-    char output[512] = {0};
+    char output[string.length() + YggdrasilTypes::LOGGER_FORMAT_SIZE::value] = {0};
     float time = 0.0f;
     switch (level)
     {
@@ -24,6 +24,8 @@ YggdrasilTypes::ReturnCode NanoYggdrasil::LoggerOutput(YggdrasilLoggerHandleBase
         default:                                              snprintf(output, sizeof(output), "%s[%.3f]-[Default]-%s%s", YggdrasilTypes::LOGGER_LEVEL_DEFAULT_COLOR.data(), time, string.data(), YggdrasilTypes::LOGGER_LEVEL_DEFAULT_COLOR.data()); break;
     }
 
+    printf("%s\n", output);
+
     for(auto& loggerHandle : loggerHandleList){
         loggerHandle.get().LoggerOutput(level, output);
     }
@@ -34,7 +36,9 @@ YggdrasilTypes::ReturnCode NanoYggdrasil::LoggerOutput(YggdrasilLoggerHandleBase
 YggdrasilTypes::ReturnCode NanoYggdrasil::ExtendLoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel level, std::string_view fmt, ...)
 {
     va_list args;
-    char  string[512] = {0};
+    char  string[fmt.length()] = {0};
+
+    printf("fmt size: %ld:%ld:%ld\n", fmt.length(), fmt.size(), fmt.max_size());
 
     va_start(args, fmt);
     auto stringSize = vsnprintf(string, sizeof(string), fmt.data(), args);
