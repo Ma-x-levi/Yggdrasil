@@ -108,7 +108,11 @@ int main(int argc, char *argv[])
     
 
     while(1){
-        nanoYggdrasil.test();
+        nanoYggdrasil.LoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel::ERROR, "NanoYggdrasil error");
+        nanoYggdrasil.LoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel::WARN, "NanoYggdrasil warn");
+        nanoYggdrasil.LoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel::INFO, "NanoYggdrasil info");
+        nanoYggdrasil.LoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel::DEBUG, "NanoYggdrasil debug");
+        nanoYggdrasil.LoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel::DEFAULT, "NanoYggdrasil default");
         std::this_thread::sleep_for(std::chrono::milliseconds(200));
     }
 

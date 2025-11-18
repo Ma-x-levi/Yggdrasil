@@ -15,10 +15,11 @@ public:
 
     enum class LoggerLevel : uint8_t
     {
-        ERROR   = 0,
-        WARN    = 1,
-        INFO    = 2,
-        DEBUG   = 3,
+        DEFAULT  = 0,
+        ERROR    = 1,
+        WARN     = 2,
+        INFO     = 3,
+        DEBUG    = 4,
     };
 
     using HandlePtr = std::unique_ptr<YggdrasilLoggerHandleBase>;
@@ -48,10 +49,11 @@ public:
 
     
     YggdrasilLoggerHandleBase(std::string_view name, bool supportColor) :
-    handleName{},
+    handleName{0},
     isSupportColor(supportColor)
     {
         HandleName* namePtr = const_cast<HandleName*>(&handleName);
+        std::fill(namePtr->begin(), namePtr->end(), 0);
         std::copy(name.begin(), name.begin() + std::min(name.size(), namePtr->size()), namePtr->begin());
     }
 

@@ -1,3 +1,5 @@
+#include <stdarg.h>
+
 #include "NanoYggdrasil.h"
 
 NanoYggdrasil::NanoYggdrasil()
@@ -19,13 +21,6 @@ void NanoYggdrasil::test()
 }
 
 
-
-YggdrasilTypes::ReturnCode NanoYggdrasil::RegisterLoggerHandle(std::reference_wrapper<YggdrasilLoggerHandleBase> handle)
-{
-    loggerHandleList.push_back(handle);
-    return YggdrasilTypes::ReturnCode::SUCCESS;
-}
-
 YggdrasilTypes::ReturnCode NanoYggdrasil::init()
 {
     for(auto& loggerHandle : loggerHandleList){
@@ -33,5 +28,7 @@ YggdrasilTypes::ReturnCode NanoYggdrasil::init()
     }
     return YggdrasilTypes::ReturnCode::SUCCESS;
 }
+
+
 
 
