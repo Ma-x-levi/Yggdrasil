@@ -1,6 +1,8 @@
 #pragma once
 
-class YggdrasilOsalThreadBase
+#include <common/YggdrasilTypes.h>
+
+class YggdrasilOsalTaskManagerBase
 {
 
 //define space
@@ -25,9 +27,12 @@ private:
 
 //method space
 public:
-    YggdrasilOsalThreadBase();
+    YggdrasilOsalTaskManagerBase();
 
-    ~YggdrasilOsalThreadBase();
+    ~YggdrasilOsalTaskManagerBase();
+
+
+    virtual YggdrasilTypes::ReturnCode TaskCreate(std::string_view name, uint32_t stackSize) = 0;
 
 //method space
 protected:

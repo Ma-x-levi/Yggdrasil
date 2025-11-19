@@ -1,10 +1,16 @@
 #pragma once
 
+//c header
 #include <stdio.h>
 
-#include <component/YggdrasilLoggerHandleBase.h>
-
+//cpp header
 #include <vector>
+
+//platform header
+#include <hal/YggdrasilHalLampHandleBase.h>
+#include <osal/YggdrasilLoggerHandleBase.h>
+
+
 
 class NanoYggdrasil
 {
@@ -30,8 +36,8 @@ private:
 
     // YggdrasilLoggerHandleBase::HandlePtr loggerHandle;
 
-    std::vector<std::reference_wrapper<YggdrasilLoggerHandleBase>> loggerHandleList;   //Todo: use no new realize
-
+    std::vector<std::reference_wrapper<YggdrasilLoggerHandleBase>>    _loggerHandleList;   //Todo: use no new realize
+    std::vector<std::reference_wrapper<YggdrasilHalLampHandleBase>>   _halLampHandleList;  //Todo: use no new realize
 
 //method space
 public:
@@ -42,9 +48,13 @@ public:
 
     static NanoYggdrasil& instance();
 
+    YggdrasilTypes::ReturnCode Init();
+
+    YggdrasilTypes::ReturnCode Execute();
+
     YggdrasilTypes::ReturnCode RegisterLoggerHandle(std::reference_wrapper<YggdrasilLoggerHandleBase> handle);
 
-    YggdrasilTypes::ReturnCode init();
+    YggdrasilTypes::ReturnCode RegisterHalLampHandle(std::reference_wrapper<YggdrasilHalLampHandleBase> handle);
 
     YggdrasilTypes::ReturnCode LoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel level, std::string_view string);
 

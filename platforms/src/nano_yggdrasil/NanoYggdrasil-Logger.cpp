@@ -5,7 +5,7 @@
 
 YggdrasilTypes::ReturnCode NanoYggdrasil::RegisterLoggerHandle(std::reference_wrapper<YggdrasilLoggerHandleBase> handle)
 {
-    loggerHandleList.push_back(handle);
+    _loggerHandleList.push_back(handle);
     return YggdrasilTypes::ReturnCode::SUCCESS;
 }
 
@@ -24,7 +24,7 @@ YggdrasilTypes::ReturnCode NanoYggdrasil::LoggerOutput(YggdrasilLoggerHandleBase
         default:                                              snprintf(output, sizeof(output), "%s[%.3f]-[Default]-%s%s", YggdrasilTypes::LOGGER_LEVEL_DEFAULT_COLOR.data(), time, string.data(), YggdrasilTypes::LOGGER_LEVEL_DEFAULT_COLOR.data()); break;
     }
 
-    for(auto& loggerHandle : loggerHandleList){
+    for(auto& loggerHandle : _loggerHandleList){
         loggerHandle.get().LoggerOutput(level, output);
     }
     return YggdrasilTypes::ReturnCode::SUCCESS;

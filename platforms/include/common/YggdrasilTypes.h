@@ -27,5 +27,8 @@ namespace YggdrasilTypes
     using LOGGER_DEFAULT_FORMAT_SIZE    = std::integral_constant<int, 128>;
     using LOGGER_DEFAULT_PARAMETER_SIZE = std::integral_constant<int, 512>;
 
+
+    using HandleName = std::array<char, YGGDRASIL_DEFAULT_NAME_SIZE>;
+
 } // namespace YggdrasilTypes
 

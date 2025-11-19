@@ -12,7 +12,7 @@ NanoYggdrasil& NanoYggdrasil::instance()
 
 NanoYggdrasil::NanoYggdrasil()
 {
-//     // printf("NanoYggdrasil created");
+    
 }
 
 
@@ -24,12 +24,19 @@ NanoYggdrasil::~NanoYggdrasil()
 }
 
 
-YggdrasilTypes::ReturnCode NanoYggdrasil::init()
+YggdrasilTypes::ReturnCode NanoYggdrasil::Init()
 {
-    for(auto& loggerHandle : loggerHandleList){
-        loggerHandle.get().LoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel::INFO, "Yggdrasil init\n");
-    }
+    LoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel::INFO, "Yggdrasil init started");
+    LoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel::INFO, "Yggdrasil init successful");
     return YggdrasilTypes::ReturnCode::SUCCESS;
+}
+
+
+YggdrasilTypes::ReturnCode NanoYggdrasil::Execute()
+{
+    while(1){
+
+    }
 }
 
 

@@ -23,7 +23,7 @@ public:
     };
 
     using HandlePtr = std::unique_ptr<YggdrasilLoggerHandleBase>;
-    using HandleName = std::array<char, YGGDRASIL_DEFAULT_NAME_SIZE>;
+    
 
 //define space
 protected:  
@@ -31,8 +31,8 @@ protected:
 //define space
 private:
 
-    const HandleName     handleName;
-    const bool           isSupportColor;
+    const YggdrasilTypes::HandleName     _handleName;
+    const bool                           _supportColor;
 
 //variable space
 public:
@@ -49,17 +49,17 @@ public:
 
     
     YggdrasilLoggerHandleBase(std::string_view name, bool supportColor) :
-    handleName{0},
-    isSupportColor(supportColor)
+    _handleName{0},
+    _supportColor(supportColor)
     {
-        HandleName* namePtr = const_cast<HandleName*>(&handleName);
+        YggdrasilTypes::HandleName* namePtr = const_cast<YggdrasilTypes::HandleName*>(&_handleName);
         std::fill(namePtr->begin(), namePtr->end(), 0);
         std::copy(name.begin(), name.begin() + std::min(name.size(), namePtr->size()), namePtr->begin());
     }
 
     virtual ~YggdrasilLoggerHandleBase() = default;
 
-    virtual YggdrasilTypes::ReturnCode LoggerOutput(LoggerLevel level, std::string_view string) = 0;
+    virtual YggdrasilTypes::ReturnCode LoggerOutput(LoggerLevel level, std::string_view string) noexcept = 0;
 
 
 
@@ -75,7 +75,7 @@ public:
 
     std::string_view getName() const
     {
-        return std::string_view(handleName.data(), handleName.size());
+        return std::string_view(_handleName.data(), _handleName.size());
     }
 
 //interface space
