@@ -27,12 +27,14 @@ private:
 
 //method space
 public:
-    YggdrasilOsalTaskManagerBase();
 
-    ~YggdrasilOsalTaskManagerBase();
+    YggdrasilOsalTaskManagerBase(){};
 
+    ~YggdrasilOsalTaskManagerBase(){};
 
-    virtual YggdrasilTypes::ReturnCode TaskCreate(std::string_view name, uint32_t stackSize) = 0;
+    [[nodiscard]] virtual YggdrasilTypes::ReturnCode TaskCreate(std::string_view name, uint32_t stackSize) noexcept = 0;
+
+    [[nodiscard]] virtual YggdrasilTypes::ReturnCode SleepMs(size_t ms) noexcept = 0;
 
 //method space
 protected:
@@ -49,5 +51,19 @@ protected:
 
 //interface space
 private:
+
+};
+
+
+class DefaultYggdrasilOsalTaskManager : public YggdrasilOsalTaskManagerBase
+{
+public:
+    DefaultYggdrasilOsalTaskManager(){};
+
+    ~DefaultYggdrasilOsalTaskManager(){};
+
+    [[nodiscard]] virtual YggdrasilTypes::ReturnCode TaskCreate(std::string_view name, uint32_t stackSize) noexcept override { return YggdrasilTypes::ReturnCode::NONSUPPORT; }
+
+    [[nodiscard]] virtual YggdrasilTypes::ReturnCode SleepMs(size_t ms) noexcept override { return YggdrasilTypes::ReturnCode::NONSUPPORT; }
 
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-class YggdrasilOsalMutexBase
+class YggdrasilOsalMutexManagerBase
 {
 
 //define space
@@ -25,9 +25,9 @@ private:
 
 //method space
 public:
-    YggdrasilOsalMutexBase();
+    YggdrasilOsalMutexManagerBase(){};
 
-    ~YggdrasilOsalMutexBase();
+    ~YggdrasilOsalMutexManagerBase(){};
 
 //method space
 protected:
@@ -45,4 +45,15 @@ protected:
 //interface space
 private:
 
+};
+
+
+class DefaultYggdrasilOsalMutexManager : public YggdrasilOsalMutexManagerBase
+{
+
+public:
+    DefaultYggdrasilOsalMutexManager(){};
+
+
+    ~DefaultYggdrasilOsalMutexManager(){};
 };

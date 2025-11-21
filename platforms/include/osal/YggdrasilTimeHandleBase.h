@@ -51,19 +51,19 @@ public:
 
     ~YggdrasilTimeHandleBase();
 
-    virtual double GetBootTime() = 0;
+    [[nodiscard]] virtual double GetBootTime() noexcept = 0;
 
-    virtual int64_t GetBootTimeMs() = 0;
+    [[nodiscard]] virtual int64_t GetBootTimeMs() noexcept = 0;
 
-    virtual int64_t GetBootTimeUs() = 0;
+    [[nodiscard]] virtual int64_t GetBootTimeUs() noexcept = 0;
 
-    virtual double GetAppStartTime() = 0;
+    [[nodiscard]] virtual double GetAppStartTime() noexcept = 0;
 
-    virtual int64_t GetAppStartTimeMs() = 0;
+    [[nodiscard]] virtual int64_t GetAppStartTimeMs() noexcept = 0;
 
-    virtual int64_t GetAppStartTimeUs() = 0;
+    [[nodiscard]] virtual int64_t GetAppStartTimeUs() noexcept = 0;
 
-    virtual UtcTime GetUtcTime() = 0;
+    [[nodiscard]] virtual UtcTime GetUtcTime() noexcept = 0;
 
 
 

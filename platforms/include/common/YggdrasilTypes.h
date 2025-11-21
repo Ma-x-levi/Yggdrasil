@@ -11,10 +11,14 @@
 namespace YggdrasilTypes
 {
 
-    enum class ReturnCode : int64_t
+    enum class ReturnCode : uint64_t
     {
-        SUCCESS         =   0,
-        TIMEOUT         =   1,
+        
+        SUCCESS              =   0,
+        NONSUPPORT           =   1,
+        UNKNOWN_FAILURE      =   2,
+        TIMEOUT              =   3,
+        INVALID_ARGUMENT     =   4,
     };
 
 

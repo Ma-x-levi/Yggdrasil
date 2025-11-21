@@ -73,7 +73,7 @@ private:
 //interface space
 public:
 
-    std::string_view getName() const
+    std::string_view getName() const noexcept
     {
         return std::string_view(_handleName.data(), _handleName.size());
     }

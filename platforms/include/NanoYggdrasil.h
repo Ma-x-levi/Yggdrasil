@@ -8,7 +8,11 @@
 
 //platform header
 #include <hal/YggdrasilHalLampHandleBase.h>
+
 #include <osal/YggdrasilLoggerHandleBase.h>
+#include <osal/YggdrasilOsalTaskManagerBase.h>
+#include <osal/YggdrasilOsalMutexManagerBase.h>
+
 
 
 
@@ -34,7 +38,9 @@ protected:
 //variable space
 private:
 
-    // YggdrasilLoggerHandleBase::HandlePtr loggerHandle;
+    std::reference_wrapper<YggdrasilOsalTaskManagerBase>              _osalTaskManager;
+
+    std::reference_wrapper<YggdrasilOsalMutexManagerBase>             _osalMutexManager;
 
     std::vector<std::reference_wrapper<YggdrasilLoggerHandleBase>>    _loggerHandleList;   //Todo: use no new realize
     std::vector<std::reference_wrapper<YggdrasilHalLampHandleBase>>   _halLampHandleList;  //Todo: use no new realize
@@ -48,15 +54,17 @@ public:
 
     static NanoYggdrasil& instance();
 
-    YggdrasilTypes::ReturnCode Init();
+    YggdrasilTypes::ReturnCode Init() noexcept;
 
-    YggdrasilTypes::ReturnCode Execute();
+    YggdrasilTypes::ReturnCode Execute() noexcept;
 
-    YggdrasilTypes::ReturnCode RegisterLoggerHandle(std::reference_wrapper<YggdrasilLoggerHandleBase> handle);
+    YggdrasilTypes::ReturnCode RegisterOsalTaskManager(std::reference_wrapper<YggdrasilOsalTaskManagerBase> manager) noexcept;
 
-    YggdrasilTypes::ReturnCode RegisterHalLampHandle(std::reference_wrapper<YggdrasilHalLampHandleBase> handle);
+    YggdrasilTypes::ReturnCode RegisterLoggerHandle(std::reference_wrapper<YggdrasilLoggerHandleBase> handle) noexcept;
 
-    YggdrasilTypes::ReturnCode LoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel level, std::string_view string);
+    YggdrasilTypes::ReturnCode RegisterHalLampHandle(std::reference_wrapper<YggdrasilHalLampHandleBase> handle) noexcept;
+
+    YggdrasilTypes::ReturnCode LoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel level, std::string_view string) noexcept;
 
     /**
      * @brief Print out the selected level log of the specified format by the registration method.
@@ -65,7 +73,7 @@ public:
      * @param fmt: pointer to the format string that needs print out.
      * @param ...: Variable parameters, consistent with the use of the system interface print out.
      */
-    YggdrasilTypes::ReturnCode ExtendLoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel level, std::string_view fmt, ...);
+    YggdrasilTypes::ReturnCode ExtendLoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel level, std::string_view fmt, ...) noexcept;
 //method space
 protected:
 

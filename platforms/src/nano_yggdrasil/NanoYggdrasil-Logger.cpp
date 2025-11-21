@@ -3,14 +3,14 @@
 #include "NanoYggdrasil.h"
 
 
-YggdrasilTypes::ReturnCode NanoYggdrasil::RegisterLoggerHandle(std::reference_wrapper<YggdrasilLoggerHandleBase> handle)
+YggdrasilTypes::ReturnCode NanoYggdrasil::RegisterLoggerHandle(std::reference_wrapper<YggdrasilLoggerHandleBase> handle) noexcept
 {
     _loggerHandleList.push_back(handle);
     return YggdrasilTypes::ReturnCode::SUCCESS;
 }
 
 
-YggdrasilTypes::ReturnCode NanoYggdrasil::LoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel level, std::string_view string)
+YggdrasilTypes::ReturnCode NanoYggdrasil::LoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel level, std::string_view string) noexcept
 {
     char output[string.length() + YggdrasilTypes::LOGGER_DEFAULT_FORMAT_SIZE::value] = {0};
     float time = 0.0f;
@@ -31,7 +31,7 @@ YggdrasilTypes::ReturnCode NanoYggdrasil::LoggerOutput(YggdrasilLoggerHandleBase
 }
 
 
-YggdrasilTypes::ReturnCode NanoYggdrasil::ExtendLoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel level, std::string_view fmt, ...)
+YggdrasilTypes::ReturnCode NanoYggdrasil::ExtendLoggerOutput(YggdrasilLoggerHandleBase::LoggerLevel level, std::string_view fmt, ...) noexcept
 {
     va_list args;
     char string[fmt.length() + YggdrasilTypes::LOGGER_DEFAULT_PARAMETER_SIZE::value] = {0};
